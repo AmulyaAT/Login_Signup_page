@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up page</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body style="background-color: blue">
+    <form action="login.html" id="signupForm" class="form-container" onsubmit="return signup()">
+        <div class="heading">
+            <h2>SignUp</h2>
+        </div>
+
+        <input id="emailInput" type="text" placeholder="Email"><br>
+        <input id="passwordInput" type="password" placeholder="Password"><br>
+        <input id="confirmPasswordInput" type="password" placeholder="Confirm password"><br>
+
+        <div class="signupbtn">
+            <button type="submit">SignUp</button>
+        </div>
+
+        <div>
+            <h5>Already have an account?<a href="login.html">Login</a></h5>
+        </div>
+        <p>───────── or ─────────</p>
+        <div class="footer">
+            <button>Login with Facebook</button><br>
+            <button>Login with Google</button>
+        </div>
+    </form>
+
+    <script>
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function checkPassword(password) {
+            return password.length >= 6;
+        }
+
+        function signup() {
+            const email = document.getElementById("emailInput").value.trim();
+            const password = document.getElementById("passwordInput").value.trim();
+            const confirmPassword = document.getElementById("confirmPasswordInput").value.trim();
+
+            if (!validateEmail(email)) {
+                alert("Invalid email format");
+                return false;
+            }
+
+            if (!checkPassword(password)) {
+                alert("Password must be at least 6 characters long");
+                return false;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match");
+                return false;
+            }
+
+            console.log("Signup successful");
+            return true; // Submit the form
+        }
+    </script>
+</body>
+</html>
